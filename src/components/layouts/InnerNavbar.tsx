@@ -16,15 +16,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Session } from "next-auth";
+import { signIn } from "next-auth/react";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function InnerNavbar({session} : {session : Session | null}) {
+export default function InnerNavbar({ session }: { session: Session | null }) {
   console.log(session);
-  
+
   const pathname = usePathname();
-  console.log(pathname);
+  
 
   // Styles applied conditionally pathname
   const styles = {
@@ -81,6 +82,7 @@ export default function InnerNavbar({session} : {session : Session | null}) {
                   <button
                     type="button"
                     className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={() => signIn()}
                   >
                     Seller
                   </button>
