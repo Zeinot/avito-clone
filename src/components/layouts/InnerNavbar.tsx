@@ -25,7 +25,6 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
   console.log(session);
 
   const pathname = usePathname();
-  
 
   // Styles applied conditionally pathname
   const styles = {
@@ -38,6 +37,38 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
     CurrentPageMobile:
       "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700 sm:pl-5 sm:pr-6",
   };
+
+  function SellerButton() {
+    return (
+      <div className="flex-shrink-0">
+        <button
+          type="button"
+          className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          onClick={() => signIn()}
+        >
+          Seller
+        </button>
+      </div>
+    );
+  }
+  function Profile({ session }: { session: Session }) {
+    const { user } = session;
+    console.log(user);
+
+    return (
+      <div>
+        <MenuButton className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <span className="absolute -inset-1.5" />
+          <span className="sr-only">Open user menu</span>
+          <img
+            className="h-8 w-8 rounded-full"
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            alt=""
+          />
+        </MenuButton>
+      </div>
+    );
+  }
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -78,15 +109,7 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <button
-                    type="button"
-                    className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={() => signIn()}
-                  >
-                    Seller
-                  </button>
-                </div>
+                {!session && <SellerButton />}
                 <div className="-mr-2 ml-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
                   <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -102,17 +125,7 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
-                    <div>
-                      <MenuButton className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        <span className="absolute -inset-1.5" />
-                        <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
-                      </MenuButton>
-                    </div>
+                    {session && <Profile session={session} />}
                     <Transition
                       enter="transition ease-out duration-200"
                       enterFrom="transform opacity-0 scale-95"
