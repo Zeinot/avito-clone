@@ -38,3 +38,6 @@ next-env.d.ts
 
 # keycloak
 /keycloak
+
+# ignore sqlite
+*.db
