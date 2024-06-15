@@ -16,7 +16,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Session } from "next-auth";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
