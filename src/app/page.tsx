@@ -1,4 +1,5 @@
 import { SignIn } from "@/components/auth/server/signin-button";
+import { SignOut } from "@/components/auth/server/signout-button";
 import Categories from "@/components/Categories/Categories";
 import Listings from "@/components/Listings/Listings";
 import prisma from "@/db";
@@ -12,9 +13,11 @@ import { z } from "zod";
 // console.log(mySchema.parse("tuna"));
 
 export default async function page() {
+
   return (
     <>
-      {/* <SignIn /> */}
+      <SignIn />
+      <SignOut />
       <Categories />
       <Listings />
     </>
