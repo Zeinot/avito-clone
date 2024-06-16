@@ -1,32 +1,40 @@
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 
-const projects = [
+interface Category {
+  name: string;
+  icon: string;
+  href: string;
+  countProducts: number;
+  bgColor: string;
+}
+
+const categories: Category[] = [
   {
-    name: "Graph API",
-    initials: "GA",
+    name: "category 1",
+    icon: "GA",
     href: "#",
-    members: 16,
+    countProducts: 16,
     bgColor: "bg-pink-600",
   },
   {
-    name: "Component Design",
-    initials: "CD",
+    name: "category 2",
+    icon: "CD",
     href: "#",
-    members: 12,
+    countProducts: 12,
     bgColor: "bg-purple-600",
   },
   {
-    name: "Templates",
-    initials: "T",
+    name: "category 3",
+    icon: "T",
     href: "#",
-    members: 16,
+    countProducts: 16,
     bgColor: "bg-yellow-500",
   },
   {
-    name: "React Components",
-    initials: "RC",
+    name: "category 4",
+    icon: "RC",
     href: "#",
-    members: 8,
+    countProducts: 8,
     bgColor: "bg-green-500",
   },
 ];
@@ -38,33 +46,35 @@ function classNames(...classes: string[]) {
 export default function Categories() {
   return (
     <div>
-      <h2 className="text-sm font-medium text-gray-500">Pinned Projects</h2>
+      <h2 className="text-sm font-medium text-gray-500">Categories</h2>
       <ul
         role="list"
         className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
       >
-        {projects.map((project) => (
+        {categories.map((category) => (
           <li
-            key={project.name}
+            key={category.name}
             className="col-span-1 flex rounded-md shadow-sm"
           >
             <div
               className={classNames(
-                project.bgColor,
+                category.bgColor,
                 "flex w-16 flex-shrink-0 items-center justify-center rounded-l-md text-sm font-medium text-white"
               )}
             >
-              {project.initials}
+              {category.icon}
             </div>
             <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
               <div className="flex-1 truncate px-4 py-2 text-sm">
                 <a
-                  href={project.href}
+                  href={category.href}
                   className="font-medium text-gray-900 hover:text-gray-600"
                 >
-                  {project.name}
+                  {category.name}
                 </a>
-                <p className="text-gray-500">{project.members} Members</p>
+                <p className="text-gray-500">
+                  {category.countProducts} Products
+                </p>
               </div>
               <div className="flex-shrink-0 pr-2">
                 <button

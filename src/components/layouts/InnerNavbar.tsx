@@ -16,15 +16,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Session } from "next-auth";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Logo from "../Logos/Logo";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function InnerNavbar({ session }: { session: Session | null }) {
-  console.log(session);
-
   const pathname = usePathname();
 
   // Styles applied conditionally pathname
@@ -71,6 +69,52 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
     );
   }
 
+  function ProfileMobile({ session }: { session: Session }) {
+    const { user } = session;
+    console.log(user);
+    return (
+      <div className="border-t border-gray-200 pb-3 pt-4">
+        <div className="flex items-center px-4 sm:px-6">
+          <div className="flex-shrink-0">
+            <img
+              className="h-10 w-10 rounded-full"
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt=""
+            />
+          </div>
+          <div className="ml-3">
+            <div className="text-base font-medium text-gray-800">Tom Cook</div>
+            <div className="text-sm font-medium text-gray-500">
+              tom@example.com
+            </div>
+          </div>
+        </div>
+        <div className="mt-3 space-y-1">
+          <DisclosureButton
+            as="a"
+            href="#"
+            className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+          >
+            Your Profile
+          </DisclosureButton>
+          <DisclosureButton
+            as="a"
+            href="#"
+            className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+          >
+            Settings
+          </DisclosureButton>
+          <DisclosureButton
+            as="button"
+            onClick={() => signOut()}
+            className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+          >
+            Sign out
+          </DisclosureButton>
+        </div>
+      </div>
+    );
+  }
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -84,7 +128,7 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt="Your Company"
                   /> */}
-                  <Logo/>
+                  <Logo />
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
@@ -165,15 +209,15 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
                         </MenuItem>
                         <MenuItem>
                           {({ focus }) => (
-                            <a
-                              href="#"
+                            <button
+                              onClick={() => signOut()}
                               className={classNames(
                                 focus ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                "w-full text-left block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Sign out
-                            </a>
+                            </button>
                           )}
                         </MenuItem>
                       </MenuItems>
@@ -210,48 +254,7 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
                 Listings
               </DisclosureButton>
             </div>
-            <div className="border-t border-gray-200 pb-3 pt-4">
-              <div className="flex items-center px-4 sm:px-6">
-                <div className="flex-shrink-0">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">
-                    Tom Cook
-                  </div>
-                  <div className="text-sm font-medium text-gray-500">
-                    tom@example.com
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3 space-y-1">
-                <DisclosureButton
-                  as="a"
-                  href="#"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
-                >
-                  Your Profile
-                </DisclosureButton>
-                <DisclosureButton
-                  as="a"
-                  href="#"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
-                >
-                  Settings
-                </DisclosureButton>
-                <DisclosureButton
-                  as="a"
-                  href="#"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
-                >
-                  Sign out
-                </DisclosureButton>
-              </div>
-            </div>
+            {session && <ProfileMobile session={session} />}
           </DisclosurePanel>
         </>
       )}

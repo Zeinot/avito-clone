@@ -56,7 +56,7 @@ const products = [
   // More products...
 ];
 
-export default function Listings() {
+export default function Listings({data} : any) {
   return (
     <div className="bg-white">
       
