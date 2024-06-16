@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 
 import { Session } from "next-auth";
 import { signIn, useSession } from "next-auth/react";
+import Logo from "../Logos/Logo";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -78,11 +79,12 @@ export default function InnerNavbar({ session }: { session: Session | null }) {
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
+                  {/* <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt="Your Company"
-                  />
+                  /> */}
+                  <Logo/>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
