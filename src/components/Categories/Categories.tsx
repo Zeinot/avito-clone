@@ -1,4 +1,4 @@
-import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import { IoIosArrowForward } from "react-icons/io";
 
 interface Category {
   name: string;
@@ -77,7 +77,8 @@ export default function Categories() {
                 </p>
               </div>
               <div className="flex-shrink-0 pr-2">
-                <button
+                <IoIosArrowForward className="text-gray-500" />
+                {/* <button
                   type="button"
                   className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
@@ -86,7 +87,7 @@ export default function Categories() {
                     className="h-5 w-5"
                     aria-hidden="true"
                   />
-                </button>
+                </button> */}
               </div>
             </div>
           </li>
