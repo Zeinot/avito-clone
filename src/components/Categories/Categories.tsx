@@ -11,31 +11,10 @@ interface Category {
 const categories: Category[] = [
   {
     name: "category 1",
-    icon: "/icon2.png",
-    href: "#",
-    countProducts: 16,
-    bgColor: "bg-pink-600",
-  },
-  {
-    name: "category 2",
-    icon: "/icon2.png",
-    href: "#",
-    countProducts: 12,
-    bgColor: "bg-purple-600",
-  },
-  {
-    name: "category 3",
-    icon: "/icon2.png",
-    href: "#",
-    countProducts: 16,
-    bgColor: "bg-yellow-500",
-  },
-  {
-    name: "category 4",
-    icon: "/icon2.png",
-    href: "#",
-    countProducts: 8,
-    bgColor: "bg-green-500",
+    icon: "/icon2.png", // admin can change this
+    href: "#", // leave empty for now
+    countProducts: 16, // to change later
+    bgColor: "bg-pink-600", // admin can change this
   },
 ];
 
