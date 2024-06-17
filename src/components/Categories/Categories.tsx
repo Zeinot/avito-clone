@@ -13,7 +13,11 @@ function classNames(...classes: string[]) {
 }
 
 export default async function Categories() {
-  let categories = await prisma.category.findMany();
+  let categories = await prisma.category.findMany({
+    include: { Listing: true },
+  });
+  console.log(categories);
+
   return (
     <div>
       <h2 className="text-sm font-medium text-gray-500">Categories</h2>
@@ -43,7 +47,7 @@ export default async function Categories() {
                   {category.name}
                 </a>
                 <p className="text-gray-500">
-                  {category.countProducts} Products
+                  {category.Listing.length} Products
                 </p>
               </div>
               <div className="flex-shrink-0 pr-2">
