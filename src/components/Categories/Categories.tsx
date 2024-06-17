@@ -11,28 +11,28 @@ interface Category {
 const categories: Category[] = [
   {
     name: "category 1",
-    icon: "GA",
+    icon: "/icon2.png",
     href: "#",
     countProducts: 16,
     bgColor: "bg-pink-600",
   },
   {
     name: "category 2",
-    icon: "CD",
+    icon: "/icon2.png",
     href: "#",
     countProducts: 12,
     bgColor: "bg-purple-600",
   },
   {
     name: "category 3",
-    icon: "T",
+    icon: "/icon2.png",
     href: "#",
     countProducts: 16,
     bgColor: "bg-yellow-500",
   },
   {
     name: "category 4",
-    icon: "RC",
+    icon: "/icon2.png",
     href: "#",
     countProducts: 8,
     bgColor: "bg-green-500",
@@ -62,7 +62,7 @@ export default function Categories() {
                 "flex w-16 flex-shrink-0 items-center justify-center rounded-l-md text-sm font-medium text-white"
               )}
             >
-              {category.icon}
+              <img className="w-1/2" src={category.icon} />
             </div>
             <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
               <div className="flex-1 truncate px-4 py-2 text-sm">
