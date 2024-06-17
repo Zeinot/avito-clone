@@ -23,7 +23,10 @@ CREATE TABLE "Location" (
 -- CreateTable
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL PRIMARY KEY,
+    "icon" TEXT NOT NULL DEFAULT '/icon2.png',
     "name" TEXT NOT NULL,
+    "href" TEXT NOT NULL DEFAULT '#',
+    "bgColor" TEXT NOT NULL DEFAULT 'bg-red-500',
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );

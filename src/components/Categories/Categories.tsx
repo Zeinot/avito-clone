@@ -1,28 +1,19 @@
 import { IoIosArrowForward } from "react-icons/io";
-
-interface Category {
-  name: string;
-  icon: string;
-  href: string;
-  countProducts: number;
-  bgColor: string;
-}
-
-const categories: Category[] = [
-  {
-    name: "category 1",
-    icon: "/icon2.png", // admin can change this
-    href: "#", // leave empty for now
-    countProducts: 16, // to change later
-    bgColor: "bg-pink-600", // admin can change this
-  },
-];
+import prisma from "@/db";
+// interface Category {
+//   name: string;
+//   icon: string | null;
+//   href: string;
+//   countProducts: number;
+//   bgColor: string | null;
+// }
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Categories() {
+export default async function Categories() {
+  let categories = await prisma.category.findMany();
   return (
     <div>
       <h2 className="text-sm font-medium text-gray-500">Categories</h2>
