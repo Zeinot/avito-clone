@@ -15,6 +15,7 @@ import { z } from "zod";
 
 export default async function page() {
   let data;
+  let category;
   return (
     <>
       <div className="flex flex-col gap-y-10">
@@ -22,10 +23,10 @@ export default async function page() {
       <SignOut /> */}
         <SearchBar />
         <Categories />
-        <Listings data={data} />
-        <Listings data={data} />
-        <Listings data={data} />
-        <Listings data={data} />
+        <Listings data={data} category={"Category 1"} />
+        <Listings data={data} category={"Category 2"} />
+        <Listings data={data} category={"Category 3"} />
+        <Listings data={data} category={"Category 4"} />
       </div>
     </>
   );
