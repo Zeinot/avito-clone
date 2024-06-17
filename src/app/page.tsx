@@ -16,17 +16,26 @@ import { z } from "zod";
 export default async function page() {
   let data;
   let category;
+  let categories = await prisma.category.findMany({
+    include: { Listing: true },
+    take: 4,
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return (
     <>
       <div className="flex flex-col gap-y-10">
         {/* <SignIn />
       <SignOut /> */}
         <SearchBar />
-        <Categories />
-        <Listings data={data} category={"Category 1"} />
-        <Listings data={data} category={"Category 2"} />
-        <Listings data={data} category={"Category 3"} />
-        <Listings data={data} category={"Category 4"} />
+        <Categories categories={categories} />
+
+        {categories.map((category) => {
+          type Test = typeof category;
+          return <Listings key={category.id} category={category} />;
+        })}
       </div>
     </>
   );

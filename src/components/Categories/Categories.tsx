@@ -1,5 +1,6 @@
 import { IoIosArrowForward } from "react-icons/io";
 import prisma from "@/db";
+import { Category } from "@prisma/client";
 // interface Category {
 //   name: string;
 //   icon: string | null;
@@ -12,12 +13,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default async function Categories() {
-  let categories = await prisma.category.findMany({
-    include: { Listing: true },
-  });
-  console.log(categories);
-
+export default async function Categories({ categories }) {
   return (
     <div>
       <h2 className="text-sm font-medium text-gray-500">Categories</h2>

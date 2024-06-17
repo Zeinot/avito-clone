@@ -8,16 +8,20 @@ generator client {
 }
 
 model Listing {
-  id          String   @id @default(cuid())
-  title       String
-  price       Float
-  description String // to be markdown
-  locationId  String
-  categoryId  String
-  location    Location @relation(fields: [locationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String @id @default(cuid())
+  name        String @default("product")
+  price       Float  @default(10.00)
+  imageSrc    String @default("https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg")
+  imageAlt    String @default("imageAlt")
+  href        String @default("#")
+  description String @default("description")
+
+  locationId String
+  categoryId String
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Location {
@@ -34,7 +38,7 @@ model Category {
   icon    String @default("/icon2.png")
   name    String
   href    String @default("#")
-  bgColor String @default("bg-red-500")
+  bgColor String @default("bg-slate-500")
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

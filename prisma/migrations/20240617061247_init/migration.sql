@@ -1,9 +1,12 @@
 -- CreateTable
 CREATE TABLE "Listing" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "title" TEXT NOT NULL,
-    "price" REAL NOT NULL,
-    "description" TEXT NOT NULL,
+    "name" TEXT NOT NULL DEFAULT 'product',
+    "price" REAL NOT NULL DEFAULT 10.00,
+    "imageSrc" TEXT NOT NULL DEFAULT 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    "imageAlt" TEXT NOT NULL DEFAULT 'imageAlt',
+    "href" TEXT NOT NULL DEFAULT '#',
+    "description" TEXT NOT NULL DEFAULT 'description',
     "locationId" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -26,7 +29,7 @@ CREATE TABLE "Category" (
     "icon" TEXT NOT NULL DEFAULT '/icon2.png',
     "name" TEXT NOT NULL,
     "href" TEXT NOT NULL DEFAULT '#',
-    "bgColor" TEXT NOT NULL DEFAULT 'bg-red-500',
+    "bgColor" TEXT NOT NULL DEFAULT 'bg-slate-500',
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
