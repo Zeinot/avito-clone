@@ -1,6 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
-import prisma from "@/db";
-import { Category } from "@prisma/client";
+import { Category, Listing } from "@prisma/client"; 
+import { Prisma } from "@prisma/client"; 
+type CategoryWithListings = Prisma.CategoryGetPayload<{ include: { listings: true }; }>;
 // interface Category {
 //   name: string;
 //   icon: string | null;
@@ -13,7 +14,8 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default async function Categories({ categories }) {
+
+export default async function Categories({ categories } : {categories:any}) {
   return (
     <div>
       <h2 className="text-sm font-medium text-gray-500">Categories</h2>

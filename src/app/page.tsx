@@ -23,6 +23,8 @@ export default async function page() {
       createdAt: "desc",
     },
   });
+  console.log(categories);
+
 
   return (
     <>
@@ -33,7 +35,7 @@ export default async function page() {
         <Categories categories={categories} />
 
         {categories.map((category) => {
-          type Test = typeof category;
+          
           return <Listings key={category.id} category={category} />;
         })}
       </div>
